@@ -1,0 +1,4 @@
+core
+====
+Mage GNU/Linux's core repository. This repo should only contain a minimal amount
+of packages needed to build the other ones.

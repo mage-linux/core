@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+export version=5.11
+export sources="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-$version.tar.xz"
+
+build() {
+    echo "Configure the kernel and exit to continue the building process."
+    sh
+    cp .config /etc/kernel/config
+    make
+    mkdir "$1/boot"
+    cp arch/x86_64/boot/bzImage "$1/boot/image"
+}

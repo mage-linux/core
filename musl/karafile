@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+export version=1.2.2
+export sources="https://musl.libc.org/releases/musl-$version.tar.gz"
+
+build() {
+    ./configure --prefix=/usr -disable-gcc-wrapper
+    make
+    make DESTDIR="$1" install
+
+    mkdir -p "$1/usr/bin"
+    ln -s /usr/lib/ld-musl-x86_64.so.1 "tools/bin/ldd"
+}

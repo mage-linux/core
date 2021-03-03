@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+export version=4.3
+export source="https://ftp.gnu.org/gnu/make/make-$version.tar.gz"
+
+build() {
+    ./configure --prefix=/usr --without-guile
+    make
+    make DESTDIR="$1" install
+}
