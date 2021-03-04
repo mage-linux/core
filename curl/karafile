@@ -1,0 +1,22 @@
+#!/bin/sh -e
+
+export version=7.75.0
+export sources="https://curl.se/download/curl-$version.tar.xz"
+export depends="zlib openssl"
+
+build() {
+    ./configure \
+        --prefix=/usr \
+        --enable-ipv6 \
+        --enable-unix-sockets \
+        --enable-hidden-symbols \
+        --enable-static \
+        --without-libidn \
+        --without-libidn2 \
+        --disable-ldap \
+        --disable-ares \
+        --with-pic \
+        --without-libssh2
+    make curl_LDFLAGS=-all-static
+    make DESTDIR="$1" install
+}

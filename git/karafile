@@ -1,0 +1,31 @@
+#!/bin/sh -e
+
+export version="2.30.1"
+export sources="https://www.kernel.org/pub/software/scm/git/git-$version.tar.xz
+patches/fix-t4219-with-sticky-bit-alpine.patch"
+export depends="curl openssl zlib"
+
+build() {
+    for p in patches/*; do
+        patch -1 < "$p"
+    done
+    cat >> config.mak <<EOF
+        NO_GETTEXT=YesPlease
+        NO_SVN_TESTS=YesPlease
+        NO_TCLTK=YesPlease
+        NO_EXPAT=YesPlease
+        NO_NSEC=YesPlease
+        NO_PYTHON=YesPlease
+        NO_PERL=YesPlease
+        NO_SVN_TESTS=YesPlease
+        NO_SYS_POLL_H=1
+        NO_CROSS_DIRECTORY_HARDLINKS=1
+        NO_INSTALL_HARDLINKS=1
+        CFLAGS=$CFLAGS
+EOF
+    ./configure \
+        --prefix=/usr \
+        --libexecdir=/usr/lib
+    make LIBS="$(curl-config --static-libs) libgit.a xdiff/lib.a -lz"
+    make DESTDIR="$1" install
+}
