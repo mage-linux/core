@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+export version=2.6.4
+export sources="https://github.com/westes/flex/releases/download/v$version/flex-$version.tar.gz"
+export depends="m4"
+
+build() {
+    ./configure \
+        --prefix=/usr \
+        --mandir=/usr/share/man \
+        ac_cv_func_malloc_0_nonnull=yes \
+        ac_cv_func_realloc_0_nonnull=yes
+    make
+    make DESTDIR="$1" install
+    mkdir -p "$1/usr/bin"
+    ln -s flex "$1/usr/bin/lex"
+}

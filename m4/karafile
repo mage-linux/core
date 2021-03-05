@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+export version=1.4.18
+export sources="https://ftp.gnu.org/gnu/m4/m4-$version.tar.xz"
+
+build() {
+    ./configure --prefix=/usr
+    make
+    make DESTDIR="$1" install
+}

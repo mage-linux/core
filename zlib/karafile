@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
 export version=1.2.11
-export source="https://zlib.net/zlib-$version.tar.gz"
+export sources="https://zlib.net/zlib-$version.tar.gz"
 
 build() {
     ./configure \

@@ -2,7 +2,7 @@
 
 export version=7.75.0
 export sources="https://curl.se/download/curl-$version.tar.xz"
-export depends="zlib openssl"
+export depends="zlib bearssl"
 
 build() {
     ./configure \
@@ -16,6 +16,8 @@ build() {
         --disable-ldap \
         --disable-ares \
         --with-pic \
+        --without-ssl \
+        --with-bearssl \
         --without-libssh2
     make curl_LDFLAGS=-all-static
     make DESTDIR="$1" install

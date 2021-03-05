@@ -1,0 +1,20 @@
+#!/bin/sh -e
+
+export version=0.6
+export sources="https://bearssl.org/bearssl-$version.tar.gz"
+
+build() {
+    for p in patches/*; do
+        patch -1 < "$p"
+    done
+
+    make
+
+    mkdir "$1/bin"
+    mkdir -p "$1/usr/include/"
+    mkdir "$1/usr/lib"
+
+    cp "build/brssl" "$1/bin/"
+    cp inc/* "$1/usr/include/"
+    cp "build/libbearssl.a" "$1/usr/lib/"
+}

@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
 export version=0.1
-export source="https://github.com/mage-linux/init/releases/download/v$version/init-$version.tar.xz"
+export sources="https://github.com/mage-linux/init/releases/download/v$version/init-$version.tar.xz"
 
 build() {
     make DESTDIR="$1" install
