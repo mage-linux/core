@@ -1,11 +1,12 @@
 #!/bin/sh -e
 
 export version=0.6
-export sources="https://bearssl.org/bearssl-$version.tar.gz"
+export sources="https://bearssl.org/bearssl-$version.tar.gz
+patches/bearssl-brssl-dynamic-alpine.patch"
 
 build() {
     for p in patches/*; do
-        patch -1 < "$p"
+        patch -p1 < "$p"
     done
 
     make

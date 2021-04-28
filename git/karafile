@@ -7,7 +7,7 @@ export depends="curl openssl zlib"
 
 build() {
     for p in patches/*; do
-        patch -1 < "$p"
+        patch -p1 < "$p"
     done
     cat >> config.mak <<EOF
         NO_GETTEXT=YesPlease
