@@ -2,3 +2,20 @@ core
 ====
 Mage GNU/Linux's core repository. This repo should only contain a minimal amount
 of packages needed to build the other ones.
+
+Packages that already work
+--------------------------
+[x] zlib
+[x] musl
+[ ] make
+[ ] openSSL
+[ ] gcc
+[ ] curl
+[ ] bison
+[ ] flex
+[ ] bearSSL
+[ ] git
+[ ] grub
+[ ] linux
+[ ] busybox
+[ ] m4

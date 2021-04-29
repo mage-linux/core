@@ -9,5 +9,5 @@ build() {
     make DESTDIR="$1" install
 
     mkdir -p "$1/usr/bin"
-    ln -s /usr/lib/ld-musl-x86_64.so.1 "$1/bin/ldd"
+    ln -s /usr/lib/libc.so "$1/usr/bin/ldd"
 }
