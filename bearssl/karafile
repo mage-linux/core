@@ -1,21 +1,21 @@
 #!/bin/sh -e
 
 export version=0.6
-export sources="https://bearssl.org/bearssl-$version.tar.gz
-patches/bearssl-brssl-dynamic-alpine.patch"
+export sources="https://bearssl.org/bearssl-$version.tar.gz"
 
 build() {
-    for p in patches/*; do
-        patch -p1 < "$p"
-    done
+    make CFLAGS="$CFLAGS"
+    rm build/brssl
+    make LD="$CC" LDFLAGS="$CFLAGS" 
 
-    make
-
-    mkdir "$1/bin"
+    mkdir -p "$1/bin"
     mkdir -p "$1/usr/include/"
-    mkdir "$1/usr/lib"
+    mkdir -p "$1/usr/lib"
 
-    cp "build/brssl" "$1/bin/"
+    cp build/brssl "$1/bin/"
     cp inc/* "$1/usr/include/"
-    cp "build/libbearssl.a" "$1/usr/lib/"
+    cp build/libbearssl.a "$1/usr/lib/"
+
+    mkdir -p /etc/ssl
+    curl http://curl.se/ca/cacert.pem --output /etc/ssl/cert.pem
 }

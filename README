@@ -7,15 +7,18 @@ Packages that already work
 --------------------------
 [x] zlib
 [x] musl
-[ ] make
+[x] make
 [ ] openSSL
 [ ] gcc
-[ ] curl
+[x] curl
 [ ] bison
 [ ] flex
-[ ] bearSSL
+[x] bearSSL
 [ ] git
 [ ] grub
 [ ] linux
 [ ] busybox
 [ ] m4
+[x] core
+[x] pkg
+[ ] binutils

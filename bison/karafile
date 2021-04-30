@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-export version="3.7.5"
+export version="3.7.6"
 export sources="https://ftp.gnu.org/gnu/bison/bison-$version.tar.xz"
 export depends="m4"
 

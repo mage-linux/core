@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-export version=7.75.0
+export version=7.76.1
 export sources="https://curl.se/download/curl-$version.tar.xz"
 export depends="zlib bearssl"
 
@@ -16,8 +16,8 @@ build() {
         --disable-ldap \
         --disable-ares \
         --with-pic \
-        --without-ssl \
         --with-bearssl \
+	--disable-shared \
         --without-libssh2
     make curl_LDFLAGS=-all-static
     make DESTDIR="$1" install
