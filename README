@@ -22,3 +22,5 @@ Packages that already work
 [x] core
 [x] pkg
 [ ] binutils
+[ ] linux
+[ ] linux_headers

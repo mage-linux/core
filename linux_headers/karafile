@@ -1,9 +1,13 @@
 #!/bin/sh -e
 
-export version=5.11
+export version=5.12
 export sources="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-$version.tar.xz"
 
 build() {
-    make headers
-    make headers_install ARCH=x86_64 INSTALL_HDR_PATH="$1/usr"
+    make HOSTCC="$CC" headers
+
+    # Avoid the dependency on rsync.
+    find usr/include -name \*.h -type f | while read -r file; do
+	install -Dm644 "$file" "$1/$file"
+    done
 }

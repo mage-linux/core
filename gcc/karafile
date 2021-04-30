@@ -6,11 +6,16 @@ https://ftp.gnu.org/gnu/gmp/gmp-6.2.1.tar.xz gmp
 https://ftp.gnu.org/gnu/mpfr/mpfr-4.1.0.tar.xz mpfr
 https://ftp.gnu.org/gnu/mpc/mpc-1.2.1.tar.gz mpc
 https://isl.gforge.inria.fr/isl-0.23.tar.xz isl"
+export depends="zlib"
 
 build() {
+    sed -i '/m64=/s/lib64/lib/' gcc/gcc/config/i386/t-linux64
+    sed -i 's/lib64/lib/'       gcc/gcc/config/i386/linux64.h
+
     mkdir build && cd build
     ../configure \
         --prefix=/usr \
+	--mandir=/usr/share/man \
         --disable-multilib \
         --disable-symvers \
         --disable-libmpx \
@@ -19,6 +24,7 @@ build() {
         --disable-fixed-point \
         --disable-libstdcxx-pch \
         --disable-nls \
+	--disable-libsanitizer \
         --enable-checking=release \
         --enable-__cxa_atexit \
         --enable-default-pie \
@@ -34,4 +40,6 @@ build() {
         --disable-bootstrap
     make
     make DESTDIR="$1" install
+
+    ln -s gcc "$1/usr/bin/cc"
 }

@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-export version=5.11
+export version=5.12
 export sources="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-$version.tar.xz"
 
 build() {
