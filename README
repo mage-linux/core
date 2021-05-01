@@ -9,16 +9,16 @@ Packages that already work
 [x] musl
 [x] make
 [ ] openSSL
-[ ] gcc
+[x] gcc
 [x] curl
-[ ] bison
+[x] bison
 [ ] flex
 [x] bearSSL
 [ ] git
 [ ] grub
 [ ] linux
-[ ] busybox
-[ ] m4
+[x] busybox
+[x] m4
 [x] core
 [x] pkg
 [ ] binutils

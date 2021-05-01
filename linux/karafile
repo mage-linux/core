@@ -6,6 +6,7 @@ export sources="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-$version.tar.
 build() {
     echo "Configure the kernel and exit to continue the building process."
     sh
+    mkdir -p /etc/kernel
     cp .config /etc/kernel/config
     make
     mkdir "$1/boot"

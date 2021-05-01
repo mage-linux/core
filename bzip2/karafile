@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+export version=1.0.8
+export sources="https://sourceware.org/pub/bzip2/bzip2-$version.tar.gz
+patches/makefile-CFLAGS.patch"
+
+build() {
+    for p in patches/*; do
+        patch -p1 < "$p"
+    done
+
+    make libbz2.a
+
+    install -Dm644 libbz2.a "$1/usr/lib/libbz2.a"
+    install -Dm644 bzip2.1  "$1/usr/share/man/man1/bzip2.1"
+    install -Dm644 bzlib.h  "$1/usr/include/bzlib.h"
+}

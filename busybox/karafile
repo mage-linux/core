@@ -11,6 +11,7 @@ build() {
         -e "s/CONFIG_EXTRA_CFLAGS=\"\"/CONFIG_EXTRA_CFLAGS=\"$CFLAGS\"/" \
         .config
     make
+    mkdir -p "$1/usr/bin"
     cp busybox "$1/usr/bin/busybox"
     for bin in $(./busybox --list); do
         ln -s busybox "$1/usr/bin/$bin"

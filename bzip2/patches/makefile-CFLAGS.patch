@@ -1,0 +1,18 @@
+diff --color -ur bzip2-1.0.8/Makefile bz/Makefile
+--- ./Makefile  2019-07-13 19:50:05.000000000 +0200
++++ ./Makefile  2021-05-01 19:15:47.799946940 +0200
+@@ -15,12 +15,10 @@
+ SHELL=/bin/sh
+
+ # To assist in cross-compiling
+-CC=gcc
+ AR=ar
+ RANLIB=ranlib
+-LDFLAGS=
+
+ BIGFILES=-D_FILE_OFFSET_BITS=64
+-CFLAGS=-Wall -Winline -O2 -g $(BIGFILES)
++CFLAGS+=-Wall -Winline -O2 -g $(BIGFILES)
+
+ # Where you want it installed when you do 'make install'
+ PREFIX=/usr/local

@@ -5,13 +5,10 @@ export sources="https://gcc.gnu.org/pub/gcc/releases/gcc-$version/gcc-$version.t
 https://ftp.gnu.org/gnu/gmp/gmp-6.2.1.tar.xz gmp
 https://ftp.gnu.org/gnu/mpfr/mpfr-4.1.0.tar.xz mpfr
 https://ftp.gnu.org/gnu/mpc/mpc-1.2.1.tar.gz mpc
-https://isl.gforge.inria.fr/isl-0.23.tar.xz isl"
+http://isl.gforge.inria.fr/isl-0.23.tar.xz isl"
 export depends="zlib"
 
 build() {
-    sed -i '/m64=/s/lib64/lib/' gcc/gcc/config/i386/t-linux64
-    sed -i 's/lib64/lib/'       gcc/gcc/config/i386/linux64.h
-
     mkdir build && cd build
     ../configure \
         --prefix=/usr \
@@ -33,10 +30,8 @@ build() {
         --enable-threads \
         --enable-tls \
         --enable-languages=c,c++ \
+	--with-system-zlib \
         --without-included-gettext \
-        --build=x86_64-linux-musl \
-        --host=x86_64-linux-musl \
-        --target=x86_64-linux-musl \
         --disable-bootstrap
     make
     make DESTDIR="$1" install

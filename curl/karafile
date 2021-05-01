@@ -17,7 +17,8 @@ build() {
         --disable-ares \
         --with-pic \
         --with-bearssl \
-	--disable-shared \
+	--with-ca-bundle=/etc/ssl/cert.pem \
+        --disable-shared \
         --without-libssh2
     make curl_LDFLAGS=-all-static
     make DESTDIR="$1" install

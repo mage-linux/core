@@ -1,0 +1,25 @@
+#!/bin/sh -e
+
+export version=0.183
+export sources="https://sourceware.org/ftp/elfutils/$version/elfutils-$version.tar.bz2
+error.h"
+
+build() {
+    export CFLAGS="$CFLAGS -Wno-error"
+
+    cp error.h lib/
+    # Remove dependency on argp
+    sed -i 's/as_fn_error.*libargp/: "/g' configure
+    sed -i 's/color.*printversion../#/g' lib/Makefile.in
+
+    ./configure \
+        --prefix=/usr \
+        --disable-symbol-versioning \
+        --disable-debuginfod \
+        --disable-nls \
+        ac_cv_c99=yes
+
+    make -C lib
+    make -C libelf
+    make -C libelf DESTDIR="$1" install
+}

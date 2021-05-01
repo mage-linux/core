@@ -4,9 +4,9 @@ export version=0.6
 export sources="https://bearssl.org/bearssl-$version.tar.gz"
 
 build() {
-    make CFLAGS="$CFLAGS"
+    make
     rm build/brssl
-    make LD="$CC" LDFLAGS="$CFLAGS" 
+    make LD="$CC" LDFLAGS="$CFLAGS"
 
     mkdir -p "$1/bin"
     mkdir -p "$1/usr/include/"
@@ -16,6 +16,6 @@ build() {
     cp inc/* "$1/usr/include/"
     cp build/libbearssl.a "$1/usr/lib/"
 
-    mkdir -p /etc/ssl
-    curl http://curl.se/ca/cacert.pem --output /etc/ssl/cert.pem
+    mkdir -p "$1/etc/ssl"
+    curl -L http://curl.se/ca/cacert.pem --output "$1/etc/ssl/cert.pem"
 }
