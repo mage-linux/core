@@ -2,7 +2,7 @@
 
 export version="2.36.1"
 export sources="https://ftp.gnu.org/gnu/binutils/binutils-$version.tar.xz"
-export depends="zlib"
+export depends="zlib flex"
 
 build() {
     cat > makeinfo <<EOF
@@ -14,22 +14,22 @@ EOF
     export PATH=$PATH:$PWD
 
     ./configure \
-	--prefix=/usr \
-	--with-lib-path=/usr/lib:/usr/local/lib \
-	--enable-targets=x86_64-pep \
-	--enable-deterministic-archives \
-	--disable-gold \
-	--enable-lto \
-	--enable-ld=default \
-	--enable-plugins \
-	--disable-multilib \
-	--disable-werror \
-	--disable-gdb \
-	--disable-nls \
-	--disable-readline \
-	--disable-gprof \
-	--with-mmap \
-	--with-system-zlib
+        --prefix=/usr \
+        --with-lib-path=/usr/lib:/usr/local/lib \
+        --enable-targets=x86_64-pep \
+        --enable-deterministic-archives \
+        --disable-gold \
+        --enable-lto \
+        --enable-ld=default \
+        --enable-plugins \
+        --disable-multilib \
+        --disable-werror \
+        --disable-gdb \
+        --disable-nls \
+        --disable-readline \
+        --disable-gprof \
+        --with-mmap \
+        --with-system-zlib
 
     make configure-host
     make tooldir=/usr

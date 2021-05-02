@@ -3,6 +3,7 @@
 export version=0.183
 export sources="https://sourceware.org/ftp/elfutils/$version/elfutils-$version.tar.bz2
 error.h"
+export depends="pkgconf"
 
 build() {
     export CFLAGS="$CFLAGS -Wno-error"

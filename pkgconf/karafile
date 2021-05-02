@@ -1,0 +1,15 @@
+#!/bin/sh -e
+
+export version=1.7.4
+export sources="https://distfiles.dereferenced.org/pkgconf/pkgconf-$version.tar.xz"
+
+build() {
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+
+    make
+    make DESTDIR="$1" install
+
+    ln -s pkgconf "$1/usr/bin/pkg-config"
+}

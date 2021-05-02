@@ -12,7 +12,7 @@ Packages that already work
 [x] gcc
 [x] curl
 [x] bison
-[ ] flex
+[x] flex
 [x] bearSSL
 [ ] git
 [ ] grub
@@ -24,3 +24,7 @@ Packages that already work
 [ ] binutils
 [ ] linux
 [ ] linux_headers
+[ ] perl
+[x] bzip2
+[ ] libelf
+[ ] pkgconf
