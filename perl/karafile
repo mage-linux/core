@@ -14,13 +14,13 @@ build() {
 
     ./Configure \
         -des \
-        -Dcccdlflags='-fPIC' \
+        -Dcccdlflags=-fPIC \
         -Dccdlflags='-rdynamic' \
+        -Dccflags="$CFLAGS" \
         -Dprefix=/usr \
         -Dvendorprefix=/usr \
         -Dsiteprefix=/usr/local \
         -Dlocincpth=' ' \
-        -Doptimize="$CFLAGS" \
         -Duselargefiles \
         -Dusethreads \
         -Duseshrplib \

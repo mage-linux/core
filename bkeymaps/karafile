@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+export version=1.13
+export sources="https://dev.alpinelinux.org/bkeymaps/bkeymaps-$version.tar.gz"
+
+build() {
+    make DESTDIR="$1" install
+}
