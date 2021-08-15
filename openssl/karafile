@@ -28,6 +28,6 @@ build() {
          "$CPPFLAGS" "$CFLAGS" "$LDFLAGS" -Wa,--noexecstack
     make
 
-    make DESTDOR="$1" install
+    make DESTDIR="$1" install
     rm "$1/usr/bin/c_rehash"
 }

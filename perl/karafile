@@ -15,8 +15,9 @@ build() {
     ./Configure \
         -des \
         -Dcccdlflags=-fPIC \
-        -Dccdlflags='-rdynamic' \
         -Dccflags="$CFLAGS" \
+        -Dlddlflags="-shared $LDFLAGS" \
+        -Dldflags="$LDFLAGS" \
         -Dprefix=/usr \
         -Dvendorprefix=/usr \
         -Dsiteprefix=/usr/local \
